@@ -12,9 +12,9 @@ class Plugin extends PluginBase
     {
         return [
             'name' => 'ExcelImportExport',
-            'description' => 'No description provided yet...',
+            'description' => 'Provides replacement for ImportExportController with XLSX/XLS/ODS support.',
             'author' => 'SKasianov',
-            'icon' => 'icon-leaf',
+            'icon' => 'icon-file-excel',
         ];
     }
 
