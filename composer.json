@@ -1,0 +1,10 @@
+{
+    "name": "skasianov/excelimportexport-plugin",
+    "type": "october-plugin",
+    "description": "OctoberCMS plugin. Provides replacement for ImportExportController with XLSX/XLS/ODS support.",
+    "require": {
+        "php": "^8.0",
+        "composer/installers": "~1.0",
+        "phpoffice/phpspreadsheet": "^2.1"
+    }
+}
