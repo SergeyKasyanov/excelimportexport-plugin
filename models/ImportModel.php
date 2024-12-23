@@ -30,7 +30,7 @@ abstract class ImportModel extends \Backend\Models\ImportModel
         $sheet = $spreadsheet->getActiveSheet();
 
         $sheetData = $sheet->toArray();
-        if ($options['firstRowTitles'] ?? true) {
+        if ($options['firstRowTitles']) {
             $sheetData = array_slice($sheetData, 1);
         }
 

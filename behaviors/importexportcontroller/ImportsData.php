@@ -35,7 +35,20 @@ trait ImportsData
         ]);
 
         $sheet = $spreadsheet->getActiveSheet();
-        $data = $sheet->toArray();
+
+        if (! post('first_row_titles')) {
+            $headers = [];
+            $alphabet = array_flip(range('A', 'Z'));
+            $columnsCount = $alphabet[$sheet->getHighestColumn()] + 1;
+
+            for ($i = 1; $i <= $columnsCount; $i++) {
+                $headers[] = 'Column #'.$i;
+            }
+
+            return $headers;
+        }
+
+        $data = $sheet->rangeToArray('A1:'.$sheet->getHighestColumn(). 1);
 
         return $data[0];
     }

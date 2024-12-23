@@ -36,6 +36,8 @@ class Plugin extends PluginBase
                 $config['fields']['file_format']['options']['xlsx'] = 'XLSX/XLS/ODS (MS Office/OpenOffice/LibreOffice)';
 
                 $config['fields']['import_file']['fileTypes'] = ['csv', 'json', 'xlsx', 'xls', 'ods'];
+
+                $config['fields']['first_row_titles']['trigger']['condition'] = 'value[csv][csv_custom][xlsx]';
             }
 
             return $config;
