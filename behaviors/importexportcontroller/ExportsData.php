@@ -135,7 +135,7 @@ trait ExportsData
             $colNum = 0;
             foreach ($columns as $column) {
                 $letter = $alphabet[$colNum];
-                $sheet->setCellValue("$letter$rowNum", $column->short_label ?? $column->label);
+                $sheet->setCellValue("$letter$rowNum", __($column->short_label ?? $column->label));
                 $colNum++;
             }
 

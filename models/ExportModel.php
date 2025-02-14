@@ -83,7 +83,7 @@ abstract class ExportModel extends \Backend\Models\ExportModel
             $colNum = 0;
             foreach ($columns as $column) {
                 $letter = $alphabet[$colNum];
-                $sheet->setCellValue("$letter$rowNum", $column);
+                $sheet->setCellValue("$letter$rowNum", __($column));
                 $colNum++;
             }
 
