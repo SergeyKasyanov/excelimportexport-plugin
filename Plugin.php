@@ -25,7 +25,7 @@ class Plugin extends PluginBase
             return;
         }
 
-        Event::listen('system.extendConfigFile', function (string $path, array $config) {
+        Event::listen('system.extendConfigFile', function (string $path, $config = []) {
             if ($path === '/modules/backend/behaviors/importexportcontroller/partials/fields_export.yaml') {
                 $config['fields']['file_format']['options']['xlsx'] = 'XLSX (MS Office 2007 and above)';
                 $config['fields']['file_format']['options']['xls'] = 'XLS (MS Office 95/97/2003)';
