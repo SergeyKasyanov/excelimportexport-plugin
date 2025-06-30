@@ -3,6 +3,7 @@
 namespace SKasianov\ExcelImportExport\Models;
 
 use ApplicationException;
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Ods;
 use PhpOffice\PhpSpreadsheet\Writer\Xls;
@@ -76,27 +77,22 @@ abstract class ExportModel extends \Backend\Models\ExportModel
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
 
-        $alphabet = range('A', 'Z');
-
         $rowNum = 1;
         if ($options['firstRowTitles']) {
-            $colNum = 0;
+            $colNum = 1;
             foreach ($columns as $column) {
-                $letter = $alphabet[$colNum];
+                $letter = Coordinate::stringFromColumnIndex($colNum++);
                 $sheet->setCellValue("$letter$rowNum", __($column));
-                $colNum++;
             }
-
-            $rowNum = 2;
+            $rowNum++;
         }
 
         foreach ($results as $record) {
-            $colNum = 0;
+            $colNum = 1;
             $rowData = $this->matchDataToColumns($record, $columns);
             foreach ($rowData as $value) {
-                $letter = $alphabet[$colNum];
+                $letter = Coordinate::stringFromColumnIndex($colNum++);
                 $sheet->setCellValue("$letter$rowNum", $value);
-                $colNum++;
             }
             $rowNum++;
         }

@@ -3,6 +3,7 @@
 namespace SKasianov\ExcelImportExport\Behaviors\ImportExportController;
 
 use ApplicationException;
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Reader\IReader;
 
@@ -35,11 +36,11 @@ trait ImportsData
         ]);
 
         $sheet = $spreadsheet->getActiveSheet();
+        $highestColumn = $sheet->getHighestColumn();
 
         if (! post('first_row_titles')) {
             $headers = [];
-            $alphabet = array_flip(range('A', 'Z'));
-            $columnsCount = $alphabet[$sheet->getHighestColumn()] + 1;
+            $columnsCount = Coordinate::columnIndexFromString($highestColumn);
 
             for ($i = 1; $i <= $columnsCount; $i++) {
                 $headers[] = 'Column #'.$i;
@@ -48,7 +49,7 @@ trait ImportsData
             return $headers;
         }
 
-        $data = $sheet->rangeToArray('A1:'.$sheet->getHighestColumn(). 1);
+        $data = $sheet->rangeToArray('A1:'.$highestColumn. 1);
 
         return $data[0];
     }
