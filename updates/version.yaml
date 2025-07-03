@@ -2,3 +2,4 @@ v1.0.1: First version of ExcelImportExport
 v1.0.2: Toggle headers on import
 v1.0.3: Translate column titles on export
 v1.0.4: Fix system.extendConfigFile listener
+v1.0.5: Fix import/export for tables with more than 26 columns 
